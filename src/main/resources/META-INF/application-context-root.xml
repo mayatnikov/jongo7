@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+          http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd
+	      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="ru.mayatnikov.jongo"/>
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+            <property name="locations">
+                <list>
+                    <value>classpath:/META-INF/settings.properties</value>
+                    <value>classpath:/META-INF/mongodb.properties</value>
+                </list>
+            </property>
+        <property name="fileEncoding" value="UTF-8"/>
+    </bean>
+
+    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg>
+            <mongo:mongo host="${DB.HOST}" port="${DB.PORT}" />
+        </constructor-arg>
+        <constructor-arg value="${DB.NAME}" />
+    </bean>
+
+    <bean id="jongo" class="org.jongo.Jongo">
+        <constructor-arg value="#{mongoTemplate.getDb()}"/>
+    </bean>
+
+    <bean id="geoATM" class="ru.mayatnikov.jongo.GeoJongoBean">
+        <property name="findGeoNear" value="
+{$geoNear: { near: [#, #],
+   distanceField: 'dist.calculated',
+   maxDistance: #,
+   query: { 'properties.ptype': 'ATM' },
+   includeLocs: 'dist.location',
+   uniqueDocs: false,
+   num: 100
+   }}" />
+        <property name="jongo" ref="jongo" />
+        <property name="collectionName" value="${DB.COLLECTION}" />
+        <property name="collection" value="#{jongo.getCollection(&quot;${DB.COLLECTION}&quot;)}" />
+    </bean>
+
+<!--  -->
+    <bean id="geoPOS" class="ru.mayatnikov.jongo.FindPos">
+        <property name="findGeoNear" value="
+{$geoNear: { near: [#, #],
+   distanceField: 'dist.calculated',
+   maxDistance: #,
+   query: { 'properties.ptype': 'Питание' },
+   includeLocs: 'dist.location',
+   uniqueDocs: true,
+   num: 100
+   }}" />
+        <property name="jongo" ref="jongo" />
+        <property name="collectionName" value="${DB.COLLECTION}" />
+        <property name="collection" value="#{jongo.getCollection(&quot;${DB.COLLECTION}&quot;)}" />
+    </bean>
+<!-- -->
+
+</beans>

@@ -1,0 +1,33 @@
+#!/bin/bash
+MVN2=/H/__MAVEN__/repository
+echo Application starting ...
+$JAVA_HOME/bin/java \
+-Dfile.encoding=UTF-8 \
+-classpath \
+target/classes:\
+target/test-classes:\
+$MVN2/org/springframework/data/spring-data-mongodb/1.4.1.RELEASE/spring-data-mongodb-1.4.1.RELEASE.jar:\
+$MVN2/org/springframework/spring-tx/3.2.8.RELEASE/spring-tx-3.2.8.RELEASE.jar:\
+$MVN2/org/springframework/spring-beans/3.2.8.RELEASE/spring-beans-3.2.8.RELEASE.jar:\
+$MVN2/org/springframework/spring-core/3.2.8.RELEASE/spring-core-3.2.8.RELEASE.jar:\
+$MVN2/org/springframework/spring-context/3.1.0.RELEASE/spring-context-3.1.0.RELEASE.jar:\
+$MVN2/org/springframework/spring-aop/3.1.0.RELEASE/spring-aop-3.1.0.RELEASE.jar:\
+$MVN2/aopalliance/aopalliance/1.0/aopalliance-1.0.jar:\
+$MVN2/org/springframework/spring-expression/3.2.8.RELEASE/spring-expression-3.2.8.RELEASE.jar:\
+$MVN2/org/springframework/data/spring-data-commons/1.7.1.RELEASE/spring-data-commons-1.7.1.RELEASE.jar:\
+$MVN2/org/mongodb/mongo-java-driver/2.12.0-rc3/mongo-java-driver-2.12.0-rc3.jar:\
+$MVN2/org/jongo/jongo/1.0/jongo-1.0.jar:\
+$MVN2/com/fasterxml/jackson/core/jackson-core/2.2.3/jackson-core-2.2.3.jar:\
+$MVN2/com/fasterxml/jackson/core/jackson-databind/2.2.3/jackson-databind-2.2.3.jar:\
+$MVN2/com/fasterxml/jackson/core/jackson-annotations/2.2.3/jackson-annotations-2.2.3.jar:\
+$MVN2/de/undercouch/bson4jackson/2.2.3/bson4jackson-2.2.3.jar:\
+$MVN2/org/springframework/spring-asm/3.1.0.RELEASE/spring-asm-3.1.0.RELEASE.jar:\
+$MVN2/org/slf4j/slf4j-api/1.7.6/slf4j-api-1.7.6.jar:\
+/H/__MAVEN__/repository/org/slf4j/slf4j-log4j12/1.7.6/slf4j-log4j12-1.7.6.jar:\
+$MVN2/org/slf4j/jcl-over-slf4j/1.7.6/jcl-over-slf4j-1.7.6.jar:\
+$MVN2/commons-logging/commons-logging/1.1.3/commons-logging-1.1.3.jar:\
+$MVN2/log4j/log4j/1.2.14/log4j-1.2.14.jar:\
+lib/junit-4.10.jar:\
+lib/JUnitParams-0.3.7.jar \
+ org.junit.runner.JUnitCore ru.mayatnikov.jongo.GeoTest
+echo End of app
