@@ -32,20 +32,24 @@ switched to db GEO
 > db.msk.find().count();
 2000000
 >
-(поиск геоточек в радиусе)
-> db.msk.aggregate([
-...                       {
-...                         $geoNear: {
-...                                     near: [55.701, 37.709],
-...                                     distanceField: "dist.calculated",
-...                                     maxDistance: 0.1,
-...                                     query: { "properties.ptype": "ATM" },
-...                                     includeLocs: "dist.location",
-...                                     uniqueDocs: false,
-...                                     num: 5
-...                                   }
-...                       }
-...                    ]);
+
+Поиск геоточек в радиусе MaxDistance:
+db.msk.aggregate([
+                      {
+                        $geoNear: {
+                                    near: [55.704, 37.710],
+                                    distanceField: "dist.calculated",
+                                    maxDistance: 0.0015,
+                                    query: { "properties.ptype": "ATM" },
+                                    includeLocs: "dist.location",
+                                    uniqueDocs: false,
+                                    num: 200
+                                  }
+                      }
+                   ])
+
+Результат:
+
 {
 	"result" : [
 		{

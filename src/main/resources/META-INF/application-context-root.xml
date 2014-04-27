@@ -49,7 +49,7 @@
 <!--  -->
     <bean id="geoPOS" class="ru.mayatnikov.jongo.FindPos">
         <property name="findGeoNear" value="
-{$geoNear: { near: [#, #],
+{ $geoNear: { near: [#, #],
    distanceField: 'dist.calculated',
    maxDistance: #,
    query: { 'properties.ptype': 'Питание' },

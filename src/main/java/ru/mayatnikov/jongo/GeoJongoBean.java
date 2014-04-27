@@ -31,8 +31,8 @@ public class GeoJongoBean  implements  iGeoJongoBean {
     /**
      * поиск точек в окружности
      *
-     * @param lat  долгота
-     * @param apt  широта
+     * @param lat  щирота
+     * @param apt  долгота
      * @param dist расстояние
      * @return Itarable найденных GeoPointDist (точка и расстояние до нее)
      */

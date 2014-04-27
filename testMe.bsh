@@ -23,7 +23,7 @@ $MVN2/com/fasterxml/jackson/core/jackson-annotations/2.2.3/jackson-annotations-2
 $MVN2/de/undercouch/bson4jackson/2.2.3/bson4jackson-2.2.3.jar:\
 $MVN2/org/springframework/spring-asm/3.1.0.RELEASE/spring-asm-3.1.0.RELEASE.jar:\
 $MVN2/org/slf4j/slf4j-api/1.7.6/slf4j-api-1.7.6.jar:\
-/H/__MAVEN__/repository/org/slf4j/slf4j-log4j12/1.7.6/slf4j-log4j12-1.7.6.jar:\
+$MVN2/org/slf4j/slf4j-log4j12/1.7.6/slf4j-log4j12-1.7.6.jar:\
 $MVN2/org/slf4j/jcl-over-slf4j/1.7.6/jcl-over-slf4j-1.7.6.jar:\
 $MVN2/commons-logging/commons-logging/1.1.3/commons-logging-1.1.3.jar:\
 $MVN2/log4j/log4j/1.2.14/log4j-1.2.14.jar:\
